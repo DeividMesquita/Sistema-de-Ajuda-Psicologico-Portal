@@ -25,11 +25,37 @@ body {
     padding: 15px;
 }
 
+.nav__perfil img {
+    width: 48px;
+}
+
 .nav__perfi-link {
     text-decoration: none;
     width: 24px;
 }
 
-.nav__perfi-link img {
-    width: 16px;
+.nav__chat {
+    padding: 15px;
+}
+
+.nav__chat img {
+    width: 48px;
+}
+
+.nav__chat-link {
+    text-decoration: none;
+    width: 24px;
+}
+
+.nav__notificacao {
+    padding: 15px;
+}
+
+.nav__notificacao img {
+    width: 48px;
+}
+
+.nav__notificacao-link {
+    text-decoration: none;
+    width: 24px;
 }
