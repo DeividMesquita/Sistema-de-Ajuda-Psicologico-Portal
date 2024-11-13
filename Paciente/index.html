@@ -7,7 +7,7 @@
       rel="icon"
       type="image/svg"
       sizes="32x32"
-      href="/img/svg/Brasão_de_Fortaleza.svg.png"
+      href="/Paciente/img/svg/Brasão_de_Fortaleza.svg.png"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/Paciente/css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
@@ -32,6 +32,16 @@
       crossorigin="anonymous"
     />
 
+    <!--CAROUSEL-->
+    <link
+      rel="stylesheet"
+      href="/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css"
+    />
+
     <title>SAPP</title>
   </head>
 
@@ -42,17 +52,17 @@
           <nav class="c-navbar__menu">
             <div class="c-navbar__link">
               <a class="c-navbar__foto"
-                ><img src="img/foto.png" alt="foto-perfil"
+                ><img src="/Paciente/img/foto.png" alt="foto-perfil"
               /></a>
             </div>
             <div class="c-navbar__link">
               <a class="c-navbar__chat-link"
-                ><img src="img/chat.png" alt="bate-papo"
+                ><img src="/Paciente/img/chat.png" alt="bate-papo"
               /></a>
             </div>
             <div class="c-navbar__link">
               <a class="c-navbar__notificacao-link"
-                ><img src="img/sininho.png" alt="notificações"
+                ><img src="/Paciente/img/sininho.png" alt="notificações"
               /></a>
             </div>
           </nav>
@@ -61,58 +71,23 @@
     </header>
 
     <main>
+      <!-- Carousel -->
       <section class="c-section-carousel">
         <div class="container-xxl">
           <div class="row">
-            <div class="c-carousel__content">
-              <div id="carouselExample" class="carousel slide">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img
-                      src="img/carousel/image.png"
-                      class="d-block w-100"
-                      alt="..."
-                    />
+            <div class="c-section-carousel__content">
+              <div class="c-section-carousel__box">
+                <div class="owl-carousel owl-theme">
+                  <div class="item">
+                    <img src="/Paciente/img/carousel/image.png" alt="Imagem 1" />
                   </div>
-                  <div class="carousel-item">
-                    <img
-                      src="img/carousel/image2.png"
-                      class="d-block w-100"
-                      alt="..."
-                    />
+                  <div class="item">
+                    <img src="/Paciente/img/carousel/image 2.png" alt="Imagem 2" />
                   </div>
-                  <div class="carousel-item">
-                    <img
-                      src="img/carousel/image3.png"
-                      class="d-block w-100"
-                      alt="..."
-                    />
+                  <div class="item">
+                    <img src="/Paciente/img/carousel/image 3.png" alt="Imagem 3" />
                   </div>
                 </div>
-                <button
-                  class="carousel-control-prev"
-                  type="button"
-                  data-bs-target="#carouselExample"
-                  data-bs-slide="prev"
-                  aria-label="Anterior"
-                >
-                  <span
-                    class="carousel-control-prev-icon"
-                    aria-hidden="true"
-                  ></span>
-                </button>
-                <button
-                  class="carousel-control-next"
-                  type="button"
-                  data-bs-target="#carouselExample"
-                  data-bs-slide="next"
-                  aria-label="Próximo"
-                >
-                  <span
-                    class="carousel-control-next-icon"
-                    aria-hidden="true"
-                  ></span>
-                </button>
               </div>
             </div>
           </div>
@@ -132,7 +107,7 @@
                 <button class="c-agendar__button">Agendar</button>
               </div>
               <div class="c-agendar__calendario col-4">
-                <img src="img/calendario.png" alt="calendário" />
+                <img src="/Paciente/img/calendario.png" alt="calendário" />
               </div>
             </div>
           </div>
@@ -146,7 +121,7 @@
               <article class="c-link-item">
                 <a href="#">
                   <img
-                    src="/img/links-uteis/telefone.png"
+                    src="/Paciente/img/links-uteis/telefone.png"
                     alt="Ícone de telefone"
                   />
                   <h3>Ligue 188</h3>
@@ -157,7 +132,7 @@
               <article class="c-link-item">
                 <a href="#bate-papo">
                   <img
-                    src="/img/links-uteis/chat.png"
+                    src="/Paciente/img/links-uteis/chat.png"
                     alt="Ícone de bate-papo"
                   />
                   <h3>Bate-papo</h3>
@@ -169,7 +144,7 @@
 
               <article class="c-link-item">
                 <a href="mailto:email@gmail.com">
-                  <img src="/img/links-uteis/email.png" alt="Ícone de e-mail" />
+                  <img src="/Paciente/img/links-uteis/email.png" alt="Ícone de e-mail" />
                   <h3>E-mail</h3>
                   <p>Tire algumas dúvidas diretamente no nosso email.</p>
                 </a>
@@ -178,7 +153,7 @@
               <article class="c-link-item">
                 <a href="#enderecos">
                   <img
-                    src="/img/links-uteis/endereco.png"
+                    src="/Paciente/img/links-uteis/endereco.png"
                     alt="Ícone de endereços"
                   />
                   <h3>Endereços</h3>
@@ -195,7 +170,7 @@
           <div class="row">
             <div class="c-agendar-espaco__content">
               <article class="c-agendar-espaco__cuca col-6">
-                <img src="img/cuca-pici.png" alt="Cuca Pici" />
+                <img src="/Paciente/img/cuca-pici.png" alt="Cuca Pici" />
               </article>
 
               <article class="c-agendar-espaco__presencial col-4">
@@ -221,7 +196,7 @@
                 <!-- Card 1 -->
                 <div class="c-section-grupos__card">
                   <figure>
-                    <img src="img/card/card.png" alt="encontros" />
+                    <img src="/Paciente/img/card/card.png" alt="encontros" />
                   </figure>
                   <h1>TDAH como lidar</h1>
                   <p>
@@ -230,13 +205,13 @@
                   <div class="c-section-grupos__footer">
                     <div class="c-section-grupos__info">
                       <img
-                        src="img/card/calendario.png"
+                        src="/Paciente/img/card/calendario.png"
                         alt="Data do encontro"
                       />
                       <span>10/08/2024</span>
                     </div>
                     <div class="c-section-grupos__info">
-                      <img src="img/card/online.png" alt="Local do encontro" />
+                      <img src="/Paciente/img/card/maps.png" alt="Local do encontro" />
                       <span>R. Cel. Matos Dourado, 1499 - Pici</span>
                     </div>
                   </div>
@@ -246,7 +221,7 @@
                 <!-- Card 2 (cópia do card 1) -->
                 <div class="c-section-grupos__card">
                   <figure>
-                    <img src="img/card/card.png" alt="encontros" />
+                    <img src="/Paciente/img/card/card.png" alt="encontros" />
                   </figure>
                   <h1>TDAH como lidar</h1>
                   <p>
@@ -255,13 +230,13 @@
                   <div class="c-section-grupos__footer">
                     <div class="c-section-grupos__info">
                       <img
-                        src="img/card/calendario.png"
+                        src="/Paciente/img/card/calendario.png"
                         alt="Data do encontro"
                       />
                       <span>10/08/2024</span>
                     </div>
                     <div class="c-section-grupos__info">
-                      <img src="img/card/maps.png" alt="Local do encontro" />
+                      <img src="/Paciente/img/card/maps.png" alt="Local do encontro" />
                       <span>R. Cel. Matos Dourado, 1499 - Pici</span>
                     </div>
                   </div>
@@ -271,7 +246,7 @@
                 <!-- Card 3 (cópia do card 1) -->
                 <div class="c-section-grupos__card">
                   <figure>
-                    <img src="img/card/card.png" alt="encontros" />
+                    <img src="/Paciente/img/card/card.png" alt="encontros" />
                   </figure>
                   <h1>TDAH como lidar</h1>
                   <p>
@@ -280,13 +255,13 @@
                   <div class="c-section-grupos__footer">
                     <div class="c-section-grupos__info">
                       <img
-                        src="img/card/calendario.png"
+                        src="/Paciente/img/card/calendario.png"
                         alt="Data do encontro"
                       />
                       <span>10/08/2024</span>
                     </div>
                     <div class="c-section-grupos__info">
-                      <img src="img/card/maps.png" alt="Local do encontro" />
+                      <img src="/Paciente/img/card/maps.png" alt="Local do encontro" />
                       <span>R. Cel. Matos Dourado, 1499 - Pici</span>
                     </div>
                   </div>
@@ -298,5 +273,10 @@
         </div>
       </section>
     </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/Paciente/js/main.js"></script>
+    <script src="/OwlCarousel2-2.3.4/dist/owl.carousel.min.js" defer></script>
   </body>
 </html>

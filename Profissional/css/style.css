@@ -1,0 +1,49 @@
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FDF3E3;
+}
+
+.c-navbar {
+    background-color: #17A2B8;
+    color: white;
+    padding: 20px 0;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.c-navbar__menu {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.c-navbar__perfil {
+    padding: 15px;
+    cursor: pointer;
+}
+
+.c-navbar__foto {
+    
+    cursor: pointer;
+}
+
+.c-navbar__foto img {
+    width: 3rem;
+}
+
+
+.c-navbar__chat-link img {
+    width: 3rem;
+    cursor: pointer;
+}
+
+.c-navbar__notificacao-link {
+    cursor: pointer;
+}
+
+.c-navbar__notificacao-link img {
+    width: 3rem;
+}
