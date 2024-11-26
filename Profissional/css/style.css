@@ -47,3 +47,112 @@ body {
 .c-navbar__notificacao-link img {
     width: 3rem;
 }
+
+/* Estilo geral da seção */
+.c-section-sessoes {
+    margin-top: 50px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.c-section-sessoes__titulo {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.c-section-sessoes__periodo {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.c-section-sessoes__filtro {
+    background-color: #17A2B8;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilo para quando o card está ativo */
+.session-card.active {
+    border: 2px solid #ffc107; /* Cor amarela */
+    transition: border-color 0.3s ease;
+}
+
+/* Accordion - Oculta o conteúdo inicialmente */
+.accordion-content {
+    display: none;
+    margin-top: 10px;
+    text-align: center;
+    max-height: 0;
+    overflow: hidden; /* Esconde o conteúdo além da altura */
+    transition: max-height 0.5s ease-in-out; /* Transição suave */
+}
+
+/* Quando o conteúdo do accordion está visível */
+.accordion-content.show {
+    display: block;
+    max-height: 1000px; /* Um valor grande para permitir a exibição do conteúdo */
+}
+
+/* Link do accordion */
+.accordion-link {
+    display: block;
+    margin: 5px 0;
+    font-size: 14px;
+    color: #17a2b8;
+    text-decoration: none;
+}
+
+.accordion-link:hover {
+    text-decoration: underline;
+}
+
+/* Esconde o botão "Ver mais" quando o accordion está ativo */
+.session-card.active .toggle-accordion {
+    display: none;
+}
+
+/* Estilo do link "Ver mais" */
+.toggle-accordion {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white; /* Fundo branco */
+    color: #17A2B8; /* Cor do texto */
+    border: 2px solid #17A2B8; /* Borda com cor */
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0 auto; /* Centraliza o botão */
+    display: block; /* Torna o botão em bloco para centralizar */
+}
+
+.toggle-accordion:hover {
+    background-color: #17A2B8; /* Cor de fundo ao passar o mouse */
+    color: white; /* Cor do texto ao passar o mouse */
+}
+
+/* Estilo para a seta */
+.arrow-icon {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    font-size: 20px;
+    color: #17A2B8;
+    display: none; /* Inicialmente escondido */
+    cursor: pointer;
+}
+
+/* Quando o card está ativo, a seta é exibida e rotaciona */
+.session-card.active .arrow-icon {
+    display: inline-block;
+    transform: rotate(180deg); /* Rotaciona a seta para cima */
+}
+
+/* Quando o conteúdo do accordion é mostrado, o botão "Ver mais" desaparece */
+.session-card.active .accordion-content {
+    display: block;
+}

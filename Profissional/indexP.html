@@ -9,13 +9,18 @@
       sizes="32x32"
       href="/Profissional/img/svg/Brasão_de_Fortaleza.svg.png"
     />
+    <!--FONTES GOOGLE-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/Profissional/css/style.css" />
+
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!--BOOTSTRAP-->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
@@ -31,32 +36,184 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <!--FONTES AWSOME-->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
+    />
 
     <title>SAPP</title>
   </head>
   <body>
     <header class="c-navbar">
-        <div class="container-xxl">
-          <div class="row">
-            <nav class="c-navbar__menu">
-              <div class="c-navbar__link">
-                <a class="c-navbar__foto"
-                  ><img src="img/foto.png" alt="foto-perfil"
-                /></a>
-              </div>
-              <div class="c-navbar__link">
-                <a class="c-navbar__chat-link"
-                  ><img src="img/chat.png" alt="bate-papo"
-                /></a>
-              </div>
-              <div class="c-navbar__link">
-                <a class="c-navbar__notificacao-link"
-                  ><img src="img/sininho.png" alt="notificações"
-                /></a>
-              </div>
-            </nav>
-          </div>
+      <div class="container-xxl">
+        <div class="row">
+          <nav class="c-navbar__menu">
+            <div class="c-navbar__link">
+              <a class="c-navbar__foto"
+                ><img src="img/fotoP.png" alt="foto-perfil"
+              /></a>
+            </div>
+            <div class="c-navbar__link">
+              <a class="c-navbar__chat-link"
+                ><img src="img/chat.png" alt="bate-papo"
+              /></a>
+            </div>
+            <div class="c-navbar__link">
+              <a class="c-navbar__notificacao-link"
+                ><img src="img/sininho.png" alt="notificações"
+              /></a>
+            </div>
+          </nav>
         </div>
-      </header>
+      </div>
+    </header>
+
+    <section class="c-section-sessoes">
+      <div class="container text-center">
+        <h2>Agenda de Sessões</h2>
+        <div class="d-flex justify-content-center align-items-center mt-3">
+          <p class="periodo mb-0">AGOSTO 01/08 - 30/08</p>
+          <button class="btn filtro ms-3">Filtrar</button>
+        </div>
+      </div>
+
+      <div class="container mt-5">
+        <div class="row g-3">
+          <!-- Card 1 -->
+          <div class="col-12 col-md-4">
+            <div class="card session-card">
+              <div class="card-body">
+                <img src="img/avatar1.png" alt="Avatar" class="avatar" />
+                <h5 class="session-name">Bianca Souza</h5>
+                <p class="session-date">
+                  <i class="bi bi-calendar-event"></i> 10/08 | 09h às 10h
+                </p>
+                <a href="javascript:void(0);" class="toggle-accordion">Ver mais</a>
+                  
+                </button>
+                <div class="accordion-content">
+                  <a href="#" class="accordion-link">Entrar em contato</a>
+                  <a href="#" class="accordion-link">Notificar paciente</a>
+                  <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-12 col-md-4">
+            <div class="card session-card">
+              <div class="card-body">
+                <img src="img/avatar2.png" alt="Avatar" class="avatar" />
+                <h5 class="session-name">Thiago Santos</h5>
+                <p class="session-date">
+                  <i class="bi bi-calendar-event"></i> 10/08 | 13h às 13h30
+                </p>
+                <a href="javascript:void(0);" class="toggle-accordion">Ver mais</a>
+                  
+                </button>
+                <div class="accordion-content">
+                  <a href="#" class="accordion-link">Entrar em contato</a>
+                  <a href="#" class="accordion-link">Notificar paciente</a>
+                  <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-12 col-md-4">
+            <div class="card session-card">
+              <div class="card-body">
+                <img src="img/avatar2.png" alt="Avatar" class="avatar" />
+                <h5 class="session-name">Thiago Santos</h5>
+                <p class="session-date">
+                  <i class="bi bi-calendar-event"></i> 10/08 | 13h às 13h30
+                </p>
+                <a href="javascript:void(0);" class="toggle-accordion">Ver mais</a>
+                  
+                </button>
+                <div class="accordion-content">
+                  <a href="#" class="accordion-link">Entrar em contato</a>
+                  <a href="#" class="accordion-link">Notificar paciente</a>
+                  <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="col-12 col-md-4">
+            <div class="card session-card">
+              <div class="card-body">
+                <img src="img/avatar2.png" alt="Avatar" class="avatar" />
+                <h5 class="session-name">Thiago Santos</h5>
+                <p class="session-date">
+                  <i class="bi bi-calendar-event"></i> 10/08 | 13h às 13h30
+                </p>
+                <a href="javascript:void(0);" class="toggle-accordion">Ver mais</a>
+              
+                </button>
+
+                <div class="accordion-content">
+                  <a href="#" class="accordion-link">Entrar em contato</a>
+                  <a href="#" class="accordion-link">Notificar paciente</a>
+                  <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="col-12 col-md-4">
+            <div class="card session-card">
+              <div class="card-body">
+                <img src="img/avatar2.png" alt="Avatar" class="avatar" />
+                <h5 class="session-name">Thiago Santos</h5>
+                <p class="session-date">
+                  <i class="bi bi-calendar-event"></i> 10/08 | 13h às 13h30
+                </p>
+                <a href="javascript:void(0);" class="toggle-accordion">Ver mais</a>
+            
+                </button>
+
+                <div class="accordion-content">
+                  <a href="#" class="accordion-link">Entrar em contato</a>
+                  <a href="#" class="accordion-link">Notificar paciente</a>
+                  <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="col-12 col-md-4">
+            <div class="card session-card">
+              <div class="card-body">
+                <img src="img/avatar2.png" alt="Avatar" class="avatar" />
+                <h5 class="session-name">Thiago Santos</h5>
+                <p class="session-date">
+                  <i class="bi bi-calendar-event"></i> 10/08 | 13h às 13h30
+                </p>
+                <a href="javascript:void(0);" class="toggle-accordion">Ver mais</a>
+                </button>
+
+                <div class="accordion-content">
+                  <a href="#" class="accordion-link">Entrar em contato</a>
+                  <a href="#" class="accordion-link">Notificar paciente</a>
+                  <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Outros cards seguem o mesmo padrão -->
+        </div>
+      </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>
