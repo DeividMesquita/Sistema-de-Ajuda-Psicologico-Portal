@@ -1,0 +1,39 @@
+{
+  "name": "pap",
+  "version": "1.0.0",
+  "description": "portal de apoio pscologico",
+  "main": "server.js",
+  "scripts": {
+    "test:watch":"jest --watchAll",
+    "test": "jest",
+    "start": "nodemon server.js",
+    "swagger-autogen": "node swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SarahBernardino799/portalApoioPscologico.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "dotenv-safe": "^9.1.0",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^6.7.1",
+    "save": "^2.9.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.7"
+  },
+  "bugs": {
+    "url": "https://github.com/SarahBernardino799/portalApoioPscologico/issues"
+  },
+  "homepage": "https://github.com/SarahBernardino799/portalApoioPscologico#readme",
+  "keywords": []
+}
