@@ -32,7 +32,7 @@ const cadastroSchrema = new mongoose.Schema(
     },
     crp:{
         type: String,
-        required: true,
+        required: false,
     },
     available: {
         type: Boolean,
@@ -43,11 +43,8 @@ const cadastroSchrema = new mongoose.Schema(
         minLength: 10,
         maxLength: 500,
         default: "não informado."
-    },
-    cadastro: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Cadastro"
     }
+    
 },
 {
     versionKey: false

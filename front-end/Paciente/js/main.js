@@ -24,3 +24,15 @@ $(document).ready(function() {
         }
     });
 });
+
+
+// Mostrar o modal
+document.getElementById('show-map').addEventListener('click', function (event) {
+    event.preventDefault(); // Evita o scroll para o ID
+    document.getElementById('map-modal').style.display = 'block';
+});
+
+// Fechar o modal
+document.getElementById('close-map').addEventListener('click', function () {
+    document.getElementById('map-modal').style.display = 'none';
+});

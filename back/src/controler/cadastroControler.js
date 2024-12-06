@@ -71,7 +71,7 @@ const deleteCad = async (req, res) =>{
             }
         const {id} = req.params
         const deletedCad = await cadastroModel.findByIdAndDelete(id)
-        const message = `${deletedCad.nome} foi deletado com sucesso.`
+        const message = `${deletedCad.id} foi deletado com sucesso.`
         res.status(200).json({message})
         })
     } catch (error) {

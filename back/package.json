@@ -4,7 +4,7 @@
   "description": "portal de apoio pscologico",
   "main": "server.js",
   "scripts": {
-    "test:watch":"jest --watchAll",
+    "test:watch": "jest --watchAll",
     "test": "jest",
     "start": "nodemon server.js",
     "swagger-autogen": "node swagger.js"

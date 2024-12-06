@@ -13,6 +13,10 @@ const cadastroSchrema = new mongoose.Schema(
     },
     senha:{
         type:String,
+    },
+    cadastro: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Cadastro"
     }
 },
 {
