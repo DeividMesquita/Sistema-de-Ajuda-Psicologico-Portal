@@ -2,13 +2,13 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const cpf = document.getElementById('cpf').value;
-    const password = document.getElementById('password').value;
+    const senha = document.getElementById('senha').value;
 
     try {
-        const response = await fetch('http://localhost:1285/login', {
+        const response = await fetch('http://localhost:1285/sistema/cadastro/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ cpf, password })  // Enviando CPF e senha no corpo
+            body: JSON.stringify({ cpf, senha })
         });
 
         const data = await response.json();
@@ -17,34 +17,35 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
             alert('Login bem-sucedido!');
             console.log(data);
 
-            // Armazenar o token e o tipo de usuário no localStorage para uso posterior
+            // Armazena o token e o tipo de usuário no localStorage
             localStorage.setItem("token", data.token);
-            localStorage.setItem("tipo", data.tipo);  // Salva o tipo (paciente ou profissional)
+            localStorage.setItem("tipo", data.tipo);
 
             // Redireciona para a página do paciente ou profissional
             if (data.tipo === "paciente") {
-                window.location.href = "/front-end/Paciente/Paciente.html";  // Página do paciente
+                window.location.href = "/Paciente/Paciente.html"; // Para o paciente
             } else if (data.tipo === "profissional") {
-                window.location.href = "/front-end/Profissional/Profissional.html";  // Página do profissional
+                window.location.href = "/Profissional/Profissional.html";
             }
         } else {
             alert(`Erro: ${data.message}`);
         }
     } catch (error) {
         console.error("Erro no login: ", error);
+        alert("Ocorreu um erro ao tentar realizar o login.");
     }
 });
 
 // Função para alternar a visibilidade da senha
 function togglePassword() {
-    const passwordField = document.getElementById('password');
+    const senhaField = document.getElementById('senha');  // Alterado de 'password' para 'senha'
     const eyeIcon = document.querySelector('.toggle-password');
 
-    if (passwordField.type === 'password') {
-        passwordField.type = 'text';
+    if (senhaField.type === 'password') {
+        senhaField.type = 'text';
         eyeIcon.textContent = '🙈'; // Altera o ícone para indicar que a senha está visível
     } else {
-        passwordField.type = 'password';
+        senhaField.type = 'password';
         eyeIcon.textContent = '👁️'; // Volta o ícone para o estado padrão
     }
 }

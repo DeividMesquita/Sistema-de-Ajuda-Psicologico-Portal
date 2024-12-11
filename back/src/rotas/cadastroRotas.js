@@ -1,28 +1,17 @@
-const controler = require("../controler/cadastroControler"); // Corrigido para 'controler'
 const express = require("express");
+const controler = require("../controler/cadastroControler");
 
 const rotas = express.Router();
 
-// Rota para obter todos os cadastros - pacientes e profissionais
+// Rotas específicas
+rotas.post("/paciente", controler.addNewPaciente);
+rotas.post("/profissional", controler.addNewProfissional);
+rotas.post("/login", controler.login);
+
+// Rotas gerais
 rotas.get("/all", controler.findAllCad);
-
-// Rota para buscar um cadastro pelo ID
-rotas.get("/:id", controler.findCadById);
-
-// Rota para adicionar um novo cadastro de paciente (usuário comum)
-rotas.post("/add", controler.addNewCad);
-
-// Rota para adicionar um novo cadastro de profissional (rota separada)
-rotas.post("/profissional", controler.addNewProfissional);  // A rota de cadastro do profissional
-
-// Rota para o login do profissional
-rotas.post("/login", controler.loginProfissional);  // Rota correta para login
-
-
-// Rota para atualizar um cadastro
-rotas.patch("/:id", controler.updateCad);
-
-// Rota para deletar um cadastro
-rotas.delete("/:id", controler.deleteCad);
+rotas.get("/cpf/:cpf", controler.findCadByCpf); // Buscar por CPF
+rotas.patch("/cpf/:cpf", controler.updateCadByCpf); // Atualizar por CPF
+rotas.delete("/cpf/:cpf", controler.deleteCadByCpf); // Deletar por CPF
 
 module.exports = rotas;

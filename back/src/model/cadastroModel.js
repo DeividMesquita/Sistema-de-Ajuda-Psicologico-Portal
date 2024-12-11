@@ -3,10 +3,6 @@ const mongoose = require("mongoose");
 // Define o esquema de cadastro
 const cadastroSchema = new mongoose.Schema(
     {
-        _id: {
-            type: mongoose.Schema.Types.ObjectId,
-            default: () => new mongoose.Types.ObjectId(),
-        },
         nome: {
             type: String,
             required: true,
@@ -34,14 +30,20 @@ const cadastroSchema = new mongoose.Schema(
             type: Date,
             required: true,
         },
-        crp: {
-            type: String, // Somente profissionais terão o campo CRP preenchido.
-            required: false,
+        crp: { 
+            type: String, 
+            required: function() {
+                return this.email && this.email.includes('@profissional.com'); // Exemplo: crp obrigatório apenas para profissionais
+            }
         },
         available: {
             type: Boolean,
             required: true,
             default: true, // Todos os cadastros começam como "disponíveis".
+        },
+        senha: {  // Adicionando o campo de senha
+            type: String,
+            required: true,  // Torne o campo de senha obrigatório
         }
     },
     {

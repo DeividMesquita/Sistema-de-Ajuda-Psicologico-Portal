@@ -29,7 +29,7 @@ const profissionalData = {
     cep,
     data_de_nascimento: dataNascimento, // Usar um nome igual ao do back-end
     crp,
-    senha // Se necessário no back-end, senão ignore esse campo
+    password: senha // Renomeando o campo para "password" ao enviá-lo ao back-end
 };
 
 // Log para verificar os dados antes de enviar

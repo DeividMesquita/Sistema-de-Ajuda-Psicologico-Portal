@@ -2,7 +2,7 @@ require('dotenv').config({ path: '../.env' });  // Caminho correto para o arquiv
 const express = require("express");
 const cors = require("cors");
 const { connect } = require("./database/dbConnect.js");
-const path = require('path');  // Importando o módulo path
+const path = require('path');
 
 const app = express();
 app.use(express.json());
@@ -11,17 +11,22 @@ app.use(cors());
 // Conectar ao MongoDB
 connect();
 
-// Serve os arquivos estáticos da pasta "front-end"
-app.use(express.static(path.join(__dirname, '..', '..', 'front-end'))); // Usando o path para garantir o caminho correto
+// Serve os arquivos estáticos da pasta "front"
+app.use(express.static(path.join(__dirname, '..', '..', 'front-end'))); // Serve toda a pasta "front"
 
-// Rota principal
+// Rota principal (Login)
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../front-end/login/index.html"));  // Usando o path também aqui
-});app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../front-end/login/index.html"));  // Usando o path também aqui
+  res.sendFile(path.join(__dirname, "../front-end/login/index.html")); // Página de login
 });
 
-// Roteamento
+// Rota para acessar a página de Profissional
+app.get("/profissional", (req, res) => {
+  res.sendFile('C:/Users/Deividson Mesquita/Downloads/Sistema de Ajuda Psicologico Portal/front-end/Profissional/Profissional.html');
+});
+
+
+
+// Roteamento de outras rotas
 const admRotas = require("./rotas/admRotas.js");
 const cadastroRotas = require("./rotas/cadastroRotas.js");
 
@@ -34,9 +39,8 @@ const swaggerFile = require("../swagger/swagger_output.json");
 app.use("/minha-documentacao", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // Configurar a porta
-const PORT = process.env.PORT || 1285; // A porta será 1285, ou a que você configurou no .env
+const PORT = process.env.PORT || 1285;
 
-// Iniciar o servidor
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
