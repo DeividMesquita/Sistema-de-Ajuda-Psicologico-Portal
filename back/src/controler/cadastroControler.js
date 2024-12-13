@@ -1,6 +1,7 @@
 const Cadastro = require("../model/cadastroModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const nodemailer = require('nodemailer');
 
 
 // Obter todos os cadastros
@@ -55,11 +56,16 @@ const enviarEmailCadastro = async (email, nome) => {
     };
 
     try {
+        console.log('Enviando e-mail para:', email);
         await transporter.sendMail(mailOptions);
+        console.log('E-mail enviado com sucesso!');
     } catch (error) {
         console.error("Erro ao enviar o email:", error);
+        // Log completo do erro
+        console.error(error);
     }
 };
+
 
 // Adicionar novo paciente
 // Adicionar novo paciente
@@ -108,17 +114,20 @@ const addNewPaciente = async (req, res) => {
 };
 
 // Adicionar novo profissional
-// Adicionar novo profissional
 const addNewProfissional = async (req, res) => {
     try {
+        console.log('Requisição recebida com body:', req.body);
+
         const { nome, cpf, email, telefone, endereco, cep, data_de_nascimento, crp, senha } = req.body;
 
         const erroValidacao = validarCampos(req.body, ['nome', 'cpf', 'email', 'telefone', 'endereco', 'cep', 'data_de_nascimento', 'senha', 'crp']);
         if (erroValidacao) {
+            console.error('Erro de validação:', erroValidacao);
             return res.status(400).json({ message: erroValidacao });
         }
 
-        // Criptografar senha
+        console.log('Senha recebida para hash:', senha);
+
         const hashedPassword = await bcrypt.hash(senha, 10);
 
         const novoProfissional = new Cadastro({
@@ -134,16 +143,16 @@ const addNewProfissional = async (req, res) => {
         });
 
         const profissionalSalvo = await novoProfissional.save();
+        console.log('Profissional salvo:', profissionalSalvo);
 
-        // Enviar e-mail de sucesso
         await enviarEmailCadastro(email, nome);
 
         res.status(201).json({ message: "Profissional cadastrado com sucesso!", profissionalSalvo });
     } catch (error) {
+        console.error('Erro ao cadastrar profissional:', error);
         res.status(500).json({ message: "Erro ao cadastrar profissional.", error });
     }
 };
-
 // Login para pacientes e profissionais
 const login = async (req, res) => {
     try {

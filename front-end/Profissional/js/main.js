@@ -54,7 +54,7 @@ $(document).ready(function () {
     const local = "R. Cel. Matos Dourado, 1499 - Pici";
     
      // Mensagem personalizada
-     const mensagem = `Olá! Sou o responsável pela sua sessão de terapia aqui no Cuca Pici. Estarei aguardando você no dia ${data} às ${horario}. O endereço é ${local}.`;
+     const mensagem = `Olá ${nome}, tudo bem? Sou o responsável pela sua sessão de terapia aqui no Cuca Pici. Estarei aguardando você no dia ${data} às ${horario}. O endereço é ${local}.`;
 
     // Substituindo o número de WhatsApp do profissional
     let numeroWhatsApp;
