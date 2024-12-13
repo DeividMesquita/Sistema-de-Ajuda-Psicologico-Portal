@@ -48,3 +48,43 @@ $(document).ready(function () {
       }
     });
   });
+
+  function entrarEmContato(nome, data, horario) {
+    // Endereço fixo
+    const local = "R. Cel. Matos Dourado, 1499 - Pici";
+    
+     // Mensagem personalizada
+     const mensagem = `Olá! Sou o responsável pela sua sessão de terapia aqui no Cuca Pici. Estarei aguardando você no dia ${data} às ${horario}. O endereço é ${local}.`;
+
+    // Substituindo o número de WhatsApp do profissional
+    let numeroWhatsApp;
+    switch (nome) {
+      case "Nicaele Pinheiro":
+        numeroWhatsApp = "558588521569";
+        break;
+      case "João Bento":
+        numeroWhatsApp = "558596839085";
+        break;
+      case "Renison Moita":
+        numeroWhatsApp = "558592874871";
+        break;
+      case "Nelson Oliveira":
+        numeroWhatsApp = "558589118556";
+        break;
+      case "Deividson Mesquita":
+        numeroWhatsApp = "558591302697";
+        break;
+      case "Sarah Bernardino":
+        numeroWhatsApp = "558596777707";
+        break;
+      default:
+        alert("Profissional não encontrado!");
+        return;
+    }
+
+    // Formatar URL para WhatsApp
+    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+    
+    // Redirecionar para o WhatsApp com a mensagem
+    window.open(urlWhatsApp, "_blank");
+  }

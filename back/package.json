@@ -23,6 +23,7 @@
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^6.7.1",
+    "nodemailer": "^6.9.16",
     "save": "^2.9.0",
     "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.1"

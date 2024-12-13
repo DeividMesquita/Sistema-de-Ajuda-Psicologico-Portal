@@ -2,6 +2,7 @@ const Cadastro = require("../model/cadastroModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+
 // Obter todos os cadastros
 const findAllCad = async (req, res) => {
     try {
@@ -26,15 +27,50 @@ const findCadByCpf = async (req, res) => {
     }
 };
 
+// Função para verificar campos obrigatórios
+const validarCampos = (dados, camposObrigatorios) => {
+    for (let campo of camposObrigatorios) {
+        if (!dados[campo]) {
+            return `Campo ${campo} é obrigatório.`;
+        }
+    }
+    return null;
+};
+
+// Função para enviar email
+const enviarEmailCadastro = async (email, nome) => {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail', // Pode ser outro serviço de e-mail
+        auth: {
+            user: process.env.EMAIL_USER, // Seu e-mail
+            pass: process.env.EMAIL_PASS, // Sua senha ou app password
+        }
+    });
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER, 
+        to: email,
+        subject: 'Cadastro Realizado com Sucesso',
+        text: `Olá ${nome},\n\nSeu cadastro foi realizado com sucesso!\n\nAtenciosamente, Equipe.`,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+    } catch (error) {
+        console.error("Erro ao enviar o email:", error);
+    }
+};
+
+// Adicionar novo paciente
 // Adicionar novo paciente
 const addNewPaciente = async (req, res) => {
     try {
-        // Extrair os dados do corpo da requisição
         const { nome, cpf, email, telefone, endereco, cep, data_de_nascimento, senha } = req.body;
-
-        // Verificar se todos os campos obrigatórios foram preenchidos
-        if (!nome || !cpf || !email || !telefone || !endereco || !cep || !data_de_nascimento || !senha) {
-            return res.status(400).json({ message: "Todos os campos são obrigatórios." });
+        
+        // Validando campos obrigatórios
+        const erroValidacao = validarCampos(req.body, ['nome', 'cpf', 'email', 'telefone', 'endereco', 'cep', 'data_de_nascimento', 'senha']);
+        if (erroValidacao) {
+            return res.status(400).json({ message: erroValidacao });
         }
 
         // Verificar se o CPF já está cadastrado
@@ -46,7 +82,7 @@ const addNewPaciente = async (req, res) => {
         // Criptografar a senha
         const hashedPassword = await bcrypt.hash(senha, 10);
 
-        // Criar um novo documento do paciente
+        // Criar novo paciente
         const novoPaciente = new Cadastro({
             nome,
             cpf,
@@ -58,26 +94,33 @@ const addNewPaciente = async (req, res) => {
             senha: hashedPassword,
         });
 
-        // Salvar o paciente no banco de dados
+        // Salvar paciente
         const pacienteSalvo = await novoPaciente.save();
+        
+        // Enviar e-mail de sucesso
+        await enviarEmailCadastro(email, nome);
 
-        // Retornar sucesso
         res.status(201).json({ message: "Paciente cadastrado com sucesso!", paciente: pacienteSalvo });
     } catch (error) {
-        // Log para depuração
         console.error("Erro ao cadastrar paciente:", error);
-
-        // Retornar erro genérico ao cliente
         res.status(500).json({ message: "Erro ao cadastrar paciente. Tente novamente mais tarde.", error: error.message });
     }
 };
 
 // Adicionar novo profissional
+// Adicionar novo profissional
 const addNewProfissional = async (req, res) => {
     try {
         const { nome, cpf, email, telefone, endereco, cep, data_de_nascimento, crp, senha } = req.body;
 
+        const erroValidacao = validarCampos(req.body, ['nome', 'cpf', 'email', 'telefone', 'endereco', 'cep', 'data_de_nascimento', 'senha', 'crp']);
+        if (erroValidacao) {
+            return res.status(400).json({ message: erroValidacao });
+        }
+
+        // Criptografar senha
         const hashedPassword = await bcrypt.hash(senha, 10);
+
         const novoProfissional = new Cadastro({
             nome,
             cpf,
@@ -91,6 +134,10 @@ const addNewProfissional = async (req, res) => {
         });
 
         const profissionalSalvo = await novoProfissional.save();
+
+        // Enviar e-mail de sucesso
+        await enviarEmailCadastro(email, nome);
+
         res.status(201).json({ message: "Profissional cadastrado com sucesso!", profissionalSalvo });
     } catch (error) {
         res.status(500).json({ message: "Erro ao cadastrar profissional.", error });
