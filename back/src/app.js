@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("../swagger/swagger_output.json");
 
-const app = express(); // Inicializa o Express primeiro
+const app = express(); // Inicializa o Express
 
 // Middlewares
 app.use(express.json());
@@ -54,6 +54,25 @@ app.post("/send-email", async (req, res) => {
   } catch (error) {
     console.error("Erro ao enviar e-mail:", error);
     res.status(500).json({ message: "Erro ao enviar e-mail.", error });
+  }
+});
+
+app.post("/send-doubt-email", async (req, res) => {
+  const { subject, body } = req.body;
+
+  const configEmail = {
+    from: process.env.EMAIL_USER,
+    to: "sappcucapici@gmail.com",  // E-mail do destinatário
+    subject: subject,
+    text: body,  // Corpo do e-mail
+  };
+
+  try {
+    await smtp.sendMail(configEmail);
+    res.status(200).json({ message: "E-mail de dúvida enviado com sucesso!" });
+  } catch (error) {
+    console.error("Erro ao enviar e-mail:", error);
+    res.status(500).json({ message: "Erro ao enviar e-mail de dúvida.", error });
   }
 });
 

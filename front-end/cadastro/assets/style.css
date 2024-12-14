@@ -51,3 +51,19 @@ a {
     text-decoration: none;
     color: #00b4d8;
 }
+
+
+.btn-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 34px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+

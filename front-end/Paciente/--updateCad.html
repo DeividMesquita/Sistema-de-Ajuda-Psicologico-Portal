@@ -1,0 +1,944 @@
+<html>
+  <head>
+    <base href="https://cdn.jsdelivr.net/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal de Apoio Psicossocial - Editar Perfil</title>
+    <style>
+      body {
+        position: relative;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: 0.08;
+        background: linear-gradient(
+            45deg,
+            transparent 48%,
+            var(--primary) 49%,
+            var(--primary) 51%,
+            transparent 52%
+          ),
+          linear-gradient(
+            -45deg,
+            transparent 48%,
+            var(--primary) 49%,
+            var(--primary) 51%,
+            transparent 52%
+          );
+        background-size: 60px 60px;
+        animation: patternMove 120s linear infinite;
+      }
+
+      .floating-symbols {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.7;
+      }
+
+      .symbol {
+        position: absolute;
+        opacity: 0.15;
+        filter: drop-shadow(0 0 8px rgba(74, 144, 226, 0.3));
+        animation: float 30s infinite ease-in-out;
+        animation-delay: var(--delay, 0s);
+      }
+
+      .symbol:nth-child(2n) {
+        --delay: -5s;
+      }
+      .symbol:nth-child(3n) {
+        --delay: -10s;
+      }
+      .symbol:nth-child(4n) {
+        --delay: -15s;
+      }
+      .symbol:nth-child(5n) {
+        --delay: -20s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0) rotate(0deg) scale(1);
+        }
+        25% {
+          transform: translate(100px, 100px) rotate(90deg) scale(1.2);
+        }
+        50% {
+          transform: translate(0, 200px) rotate(180deg) scale(1);
+        }
+        75% {
+          transform: translate(-100px, 100px) rotate(270deg) scale(0.8);
+        }
+        100% {
+          transform: translate(0, 0) rotate(360deg) scale(1);
+        }
+      }
+
+      @keyframes patternMove {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 1000px 1000px;
+        }
+      }
+
+      :root {
+        --primary: #4a90e2;
+        --secondary: #f5a623;
+        --text: #333;
+        --bg: #f5f7fa;
+        --white: #fff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 700px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 3px solid var(--primary);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .profile-pic {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--primary);
+        padding: 3px;
+        cursor: pointer;
+        background: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+        transition: background-color 0.3s;
+        flex-direction: column;
+        line-height: 1.4;
+      }
+
+      .profile-pic:hover {
+        background: #e0e0e0;
+      }
+
+      .profile-pic-container {
+        position: relative;
+      }
+
+      .edit-pic-btn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: var(--secondary);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .edit-pic-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: border-color 0.3s;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px #6c63ff40;
+        transform: translateY(-1px);
+      }
+
+      .input-example {
+        font-size: 0.8rem;
+        color: #333;
+        margin-top: 0.2rem;
+        font-style: italic;
+      }
+
+      .file-upload {
+        margin-top: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .file-upload-hint {
+        font-size: 0.8rem;
+        color: #333;
+        margin-top: 0.4rem;
+        text-align: center;
+      }
+
+      .custom-input {
+        margin-top: 0.4rem;
+        display: none;
+      }
+
+      .custom-input.show {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      .btn {
+        background: linear-gradient(135deg, var(--primary) 0%, #357abd 100%);
+        color: var(--white);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+      }
+
+      .btn:hover {
+        box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+        transform: translateY(-3px);
+      }
+
+      .success-message {
+        display: none;
+        background: #4caf50;
+        color: white;
+        padding: 1rem;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+      }
+
+      .error-message {
+        color: #f44336;
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+        display: none;
+      }
+
+      .document-success {
+        display: none;
+        background: #4caf50;
+        color: white;
+        padding: 1rem;
+        border-radius: 6px;
+        margin: 1rem 0;
+        animation: slideIn 0.3s ease-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-in {
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      .file-input {
+        display: none;
+      }
+
+      .submit-container {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .invalid {
+        border-color: #f44336 !important;
+      }
+
+      .sections-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .section-header {
+        background: #f5a623;
+        opacity: 1;
+        transition: opacity 0.3s ease, background 0.3s ease;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .section-header:not(.active) {
+        opacity: 0.7;
+        background: #ffb84d;
+      }
+
+      .section-header:hover {
+        background: #e69100;
+      }
+
+      .section-header h2 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .section-content {
+        display: none;
+        padding: 0.75rem;
+        background: white;
+        border-radius: 0 0 6px 6px;
+        animation: slideDown 0.3s ease-out;
+        transition: all 0.3s ease;
+      }
+
+      .section-content.active {
+        display: block;
+      }
+
+      .toggle-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .section-header.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="floating-symbols"></div>
+    <div class="container animate-in">
+      <div class="success-message" id="successMessage">
+        Alterações salvas com sucesso!
+      </div>
+
+      <div class="profile-header">
+        <div class="profile-pic-container">
+          <input
+            type="file"
+            id="profilePicInput"
+            accept="image/*"
+            class="file-input"
+          />
+          <div
+            class="profile-pic"
+            onclick="document.getElementById('profilePicInput').click()"
+          >
+            Nova foto<br />de perfil
+          </div>
+          <button
+            class="edit-pic-btn"
+            onclick="document.getElementById('profilePicInput').click()"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+              <path
+                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+              />
+            </svg>
+          </button>
+        </div>
+        <h1>Editar Perfil</h1>
+      </div>
+
+      <form id="profileForm" onsubmit="return handleSubmit(event)">
+        <div class="sections-container">
+          <!-- Personal Info Section -->
+          <div class="section-header" onclick="toggleSection('personalInfo')">
+            <h2>Dados Pessoais</h2>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div id="personalInfo" class="section-content">
+            <div class="form-group">
+              <label for="birthDate">Data de Nascimento</label>
+              <input type="date" id="birthDate" class="form-control" required />
+              <div class="input-example">Ex: 01/01/1990</div>
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Gênero</label>
+              <select id="gender" class="form-control" required>
+                <option value="">Selecione...</option>
+                <option value="feminine">Feminino</option>
+                <option value="masculine">Masculino</option>
+                <option value="non-binary">Não-binário</option>
+                <option value="other">Outro</option>
+                <option value="prefer-not-say">Prefiro não dizer</option>
+              </select>
+              <input
+                type="text"
+                id="customGender"
+                class="form-control custom-input"
+                placeholder="Especifique seu gênero"
+                style="margin-top: 0.4rem"
+              />
+              <div class="input-example">
+                Ex: Feminino, Masculino, Não-binário, etc.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="pronouns">Pronomes</label>
+              <select id="pronouns" class="form-control" required>
+                <option value="">Selecione...</option>
+                <option value="ela">Ela/Dela</option>
+                <option value="ele">Ele/Dele</option>
+                <option value="elu">Elu/Delu</option>
+                <option value="other">Outro</option>
+              </select>
+              <input
+                type="text"
+                id="customPronouns"
+                class="form-control custom-input"
+                placeholder="Especifique seus pronomes"
+                style="margin-top: 0.4rem"
+              />
+              <div class="input-example">Ex: Ela/Dela, Ele/Dele, Elu/Delu</div>
+            </div>
+
+            <div class="form-group">
+              <label for="fullName">Nome Completo</label>
+              <input type="text" id="fullName" class="form-control" required />
+              <div class="input-example">Ex: João Silva Santos</div>
+            </div>
+            <div class="form-group">
+              <label for="cpf">CPF</label>
+              <input
+                type="text"
+                id="cpf"
+                class="form-control"
+                required
+                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+              />
+              <div class="input-example">Ex: 123.456.789-00</div>
+
+              <label style="margin-top: 1rem"
+                >Adicionar Fotos da Carteira de Identidade</label
+              >
+              <div
+                class="document-upload-container"
+                style="display: flex; gap: 0.75rem; margin-top: 0.4rem"
+              >
+                <div class="file-upload" style="flex: 1">
+                  <input
+                    type="file"
+                    id="identityInputFront"
+                    accept="image/*"
+                    class="file-input"
+                  />
+                  <button
+                    type="button"
+                    class="btn"
+                    onclick="document.getElementById('identityInputFront').click()"
+                  >
+                    Frente da Carteira de Identidade
+                  </button>
+                </div>
+                <div class="file-upload" style="flex: 1">
+                  <input
+                    type="file"
+                    id="identityInputBack"
+                    accept="image/*"
+                    class="file-input"
+                  />
+                  <button
+                    type="button"
+                    class="btn"
+                    onclick="document.getElementById('identityInputBack').click()"
+                  >
+                    Verso da Carteira de Identidade
+                  </button>
+                </div>
+              </div>
+              <div
+                class="file-upload-hint"
+                style="text-align: center; margin-top: 0.4rem"
+              >
+                Tenha certeza que dá para ler tudo nas fotos
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Section -->
+          <div class="section-header" onclick="toggleSection('contactInfo')">
+            <h2>Contato</h2>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div id="contactInfo" class="section-content">
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" class="form-control" required />
+              <div class="input-example">Ex: joao.silva@email.com</div>
+            </div>
+            <div class="form-group">
+              <label for="confirmEmail">Confirmar E-mail</label>
+              <input
+                type="email"
+                id="confirmEmail"
+                class="form-control"
+                required
+              />
+              <div class="input-example">Digite o e-mail novamente</div>
+              <div class="error-message" id="emailError">
+                Os e-mails não coincidem!
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phoneHome">Telefone Residencial</label>
+              <input type="tel" id="phoneHome" class="form-control" required />
+              <div class="input-example">Ex: (11) 3456-7890</div>
+            </div>
+            <div class="form-group">
+              <label for="phoneMobile">Celular</label>
+              <input
+                type="tel"
+                id="phoneMobile"
+                class="form-control"
+                required
+              />
+              <div class="input-example">Ex: (11) 98765-4321</div>
+            </div>
+            <div class="form-group">
+              <label for="emergencyContact">Nome de Pessoa Próxima</label>
+              <input
+                type="text"
+                id="emergencyContact"
+                class="form-control"
+                required
+              />
+              <div class="input-example">Ex: Maria Silva (Mãe)</div>
+            </div>
+
+            <div class="form-group">
+              <label for="emergencyPhone">Contato de Pessoa Próxima</label>
+              <input
+                type="tel"
+                id="emergencyPhone"
+                class="form-control"
+                required
+              />
+              <div class="input-example">Ex: (11) 98765-4321</div>
+            </div>
+          </div>
+
+          <!-- Address Section -->
+          <div class="section-header" onclick="toggleSection('addressInfo')">
+            <h2>Endereço</h2>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div id="addressInfo" class="section-content">
+            <div class="form-group">
+              <label for="cep">CEP</label>
+              <input type="text" id="cep" class="form-control" required />
+              <div class="input-example">Ex: 01234-567</div>
+            </div>
+
+            <div class="form-group">
+              <label for="street">Rua</label>
+              <input type="text" id="street" class="form-control" required />
+              <div class="input-example">Ex: Rua das Flores</div>
+            </div>
+
+            <div class="form-group">
+              <label for="number">Número</label>
+              <input type="text" id="number" class="form-control" required />
+              <div class="input-example">Ex: 123</div>
+            </div>
+
+            <div class="form-group">
+              <label for="neighborhood">Bairro</label>
+              <input
+                type="text"
+                id="neighborhood"
+                class="form-control"
+                required
+              />
+              <div class="input-example">Ex: Jardim América</div>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="file"
+                id="addressProofInput"
+                accept="image/*"
+                class="file-input"
+              />
+              <div class="file-upload">
+                <button
+                  type="button"
+                  class="btn"
+                  onclick="document.getElementById('addressProofInput').click()"
+                >
+                  Adicionar Comprovante de Residência
+                </button>
+                <div class="file-upload-hint">
+                  (Conta de água, luz ou gás de até 3 meses atrás!)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Password Section -->
+          <div
+            class="section-header"
+            onclick="toggleSection('passwordSection')"
+          >
+            <h2>Alterar Senha</h2>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div id="passwordSection" class="section-content">
+            <div class="form-group">
+              <label for="password">Nova Senha</label>
+              <input type="password" id="password" class="form-control" />
+              <div class="input-example">Mínimo 8 caracteres</div>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirmar Nova Senha</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                class="form-control"
+              />
+              <div class="input-example">Digite a senha novamente</div>
+              <div class="error-message" id="passwordError">
+                As senhas não coincidem!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-container">
+          <button type="submit" class="btn">Salvar Alterações</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const confirmEmail = document.getElementById("confirmEmail").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+        let isValid = true;
+
+        // Reset error states
+        document.getElementById("email").classList.remove("invalid");
+        document.getElementById("confirmEmail").classList.remove("invalid");
+        document.getElementById("password").classList.remove("invalid");
+        document.getElementById("confirmPassword").classList.remove("invalid");
+        emailError.style.display = "none";
+        passwordError.style.display = "none";
+
+        // Validate email match
+        if (email !== confirmEmail) {
+          document.getElementById("email").classList.add("invalid");
+          document.getElementById("confirmEmail").classList.add("invalid");
+          emailError.style.display = "block";
+          isValid = false;
+        }
+
+        // Validate password match if either password field is filled
+        if (password || confirmPassword) {
+          if (password !== confirmPassword) {
+            document.getElementById("password").classList.add("invalid");
+            document.getElementById("confirmPassword").classList.add("invalid");
+            passwordError.style.display = "block";
+            isValid = false;
+          }
+        }
+
+        if (!isValid) {
+          return false;
+        }
+
+        const formData = {
+          fullName: document.getElementById("fullName").value,
+          cpf: document.getElementById("cpf").value,
+          email,
+          phoneHome: document.getElementById("phoneHome").value,
+          phoneMobile: document.getElementById("phoneMobile").value,
+          emergencyContact: document.getElementById("emergencyContact").value,
+          emergencyPhone: document.getElementById("emergencyPhone").value,
+          birthDate: document.getElementById("birthDate").value,
+          address: {
+            cep: document.getElementById("cep").value,
+            street: document.getElementById("street").value,
+            number: document.getElementById("number").value,
+            neighborhood: document.getElementById("neighborhood").value,
+          },
+          password,
+        };
+
+        const successMessage = document.getElementById("successMessage");
+        successMessage.style.display = "block";
+
+        setTimeout(() => {
+          successMessage.style.display = "none";
+        }, 3000);
+
+        console.log("Form data:", formData);
+        return false;
+      }
+
+      function toggleSection(sectionId) {
+        const content = document.getElementById(sectionId);
+        const header = content.previousElementSibling;
+
+        // Close all other sections
+        document.querySelectorAll(".section-content").forEach((section) => {
+          if (section.id !== sectionId) {
+            section.classList.remove("active");
+            section.previousElementSibling.classList.remove("active");
+            section.previousElementSibling.style.opacity = "0.7";
+          }
+        });
+
+        // Toggle current section
+        content.classList.toggle("active");
+        header.classList.toggle("active");
+
+        // Update opacity
+        if (header.classList.contains("active")) {
+          header.style.opacity = "1";
+        } else {
+          header.style.opacity = "0.7";
+        }
+      }
+
+      // Initialize first section as not active
+      document.addEventListener("DOMContentLoaded", () => {
+        handleCustomFields();
+      });
+
+      function handleCustomFields() {
+        // Gender custom field
+        const genderSelect = document.getElementById("gender");
+        const customGenderInput = document.getElementById("customGender");
+
+        genderSelect.addEventListener("change", function () {
+          if (this.value === "other") {
+            customGenderInput.classList.add("show");
+          } else {
+            customGenderInput.classList.remove("show");
+          }
+        });
+
+        // Pronouns custom field
+        const pronounsSelect = document.getElementById("pronouns");
+        const customPronounsInput = document.getElementById("customPronouns");
+
+        pronounsSelect.addEventListener("change", function () {
+          if (this.value === "other") {
+            customPronounsInput.classList.add("show");
+          } else {
+            customPronounsInput.classList.remove("show");
+          }
+        });
+      }
+
+      // Update the file input handlers
+      ["identityInputFront", "identityInputBack", "addressProofInput"].forEach(
+        (inputId) => {
+          document
+            .getElementById(inputId)
+            .addEventListener("change", function (e) {
+              if (e.target.files && e.target.files[0]) {
+                const parentDiv = this.parentElement;
+
+                // Remove existing success message if present
+                const existingMessage =
+                  parentDiv.querySelector(".document-success");
+                if (existingMessage) {
+                  existingMessage.remove();
+                }
+
+                // Create and show success message
+                const successDiv = document.createElement("div");
+                successDiv.className = "document-success";
+                successDiv.textContent =
+                  "Documento Adicionado com Sucesso! Agora é só Salvar as Alterações!";
+
+                // Insert message after the button
+                const button = parentDiv.querySelector(".btn");
+                button.insertAdjacentElement("afterend", successDiv);
+
+                // Show the message with animation
+                successDiv.style.display = "block";
+
+                // Optionally hide after some time
+                setTimeout(() => {
+                  successDiv.style.opacity = "0";
+                  setTimeout(() => {
+                    successDiv.style.display = "none";
+                  }, 300);
+                }, 5000);
+              }
+            });
+        }
+      );
+
+      // Keep the profile picture handler separate
+      document
+        .getElementById("profilePicInput")
+        .addEventListener("change", function (e) {
+          if (e.target.files && e.target.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              const profilePic = document.querySelector(".profile-pic");
+              profilePic.style.backgroundImage = `url(${e.target.result})`;
+              profilePic.style.backgroundSize = "cover";
+              profilePic.style.backgroundPosition = "center";
+              profilePic.innerHTML = "";
+            };
+            reader.readAsDataURL(e.target.files[0]);
+          }
+        });
+
+      // CPF formatting
+      document.getElementById("cpf").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, "");
+        if (value.length > 11) value = value.slice(0, 11);
+
+        if (value.length > 9) {
+          value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+        } else if (value.length > 6) {
+          value = value.replace(/(\d{3})(\d{3})(\d{3})/, "$1.$2.$3");
+        } else if (value.length > 3) {
+          value = value.replace(/(\d{3})(\d{3})/, "$1.$2");
+        }
+
+        e.target.value = value;
+      });
+
+      // Phone formatting for both phone inputs
+      ["phoneHome", "phoneMobile", "emergencyPhone"].forEach((phoneId) => {
+        document
+          .getElementById(phoneId)
+          .addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, "");
+            if (value.length > 11) value = value.slice(0, 11);
+
+            if (value.length > 10) {
+              value = value.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+            } else if (value.length > 6) {
+              value = value.replace(/(\d{2})(\d{4})(\d+)/, "($1) $2-$3");
+            } else if (value.length > 2) {
+              value = value.replace(/(\d{2})(\d+)/, "($1) $2");
+            }
+
+            e.target.value = value;
+          });
+      });
+
+      // CEP formatting
+      document.getElementById("cep").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, "");
+        if (value.length > 8) value = value.slice(0, 8);
+
+        if (value.length > 5) {
+          value = value.replace(/(\d{5})(\d{3})/, "$1-$2");
+        }
+
+        e.target.value = value;
+      });
+    </script>
+  </body>
+</html>

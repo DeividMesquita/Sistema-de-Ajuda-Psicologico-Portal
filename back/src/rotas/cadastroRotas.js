@@ -7,6 +7,8 @@ const rotas = express.Router();
 rotas.post("/paciente", controler.addNewPaciente);
 rotas.post("/profissional", controler.addNewProfissional);
 rotas.post("/login", controler.login);
+rotas.post("/logout", controler.logout);
+rotas.patch("/atualizar-senha", controler.atualizarSenha);
 
 // Rotas gerais
 rotas.get("/all", controler.findAllCad);
