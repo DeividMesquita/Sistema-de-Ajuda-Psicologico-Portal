@@ -16,37 +16,21 @@ body {
 
 .c-navbar__menu {
     display: flex;
-    align-items: flex-start;
-    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.c-navbar__perfil {
-    padding: 15px;
-    cursor: pointer;
+.c-navbar__user i {
+  font-size: 34px;
+  color: #F9C40F;
 }
 
-.c-navbar__foto {
-    
-    cursor: pointer;
-}
-
-.c-navbar__foto img {
-    width: 3rem;
+.c-navbar__logout i {
+  font-size: 34px;
+  color: #F9C40F;
 }
 
 
-.c-navbar__chat-link img {
-    width: 3rem;
-    cursor: pointer;
-}
-
-.c-navbar__notificacao-link {
-    cursor: pointer;
-}
-
-.c-navbar__notificacao-link img {
-    width: 3rem;
-}
 
 /* Estilo geral da seção */
 .c-section-sessoes {

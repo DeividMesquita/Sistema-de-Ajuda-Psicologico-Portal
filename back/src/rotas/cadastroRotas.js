@@ -1,12 +1,19 @@
+const express = require("express");
 const controler = require("../controler/cadastroControler");
-const express = require("express")
 
 const rotas = express.Router();
 
+// Rotas específicas
+rotas.post("/paciente", controler.addNewPaciente);
+rotas.post("/profissional", controler.addNewProfissional);
+rotas.post("/login", controler.login);
+rotas.post("/logout", controler.logout);
+rotas.patch("/atualizar-senha", controler.atualizarSenha);
+
+// Rotas gerais
 rotas.get("/all", controler.findAllCad);
-rotas.get("/:id", controler.findCadById);
-rotas.post("/add", controler.addNewCad);
-rotas.patch("/:id", controler.updateCad);
-rotas.delete("/:id", controler.deleteCad);
+rotas.get("/cpf/:cpf", controler.findCadByCpf); // Buscar por CPF
+rotas.patch("/cpf/:cpf", controler.updateCadByCpf); // Atualizar por CPF
+rotas.delete("/cpf/:cpf", controler.deleteCadByCpf); // Deletar por CPF
 
 module.exports = rotas;
